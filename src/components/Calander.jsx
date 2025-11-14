@@ -1,13 +1,12 @@
-import Month from "./Dates";
+import Month from "./Month";
+import Header from "./Header";
 
-function Calander() {
 
+function Calander({tasks}) {
     return (
         <div className="h-screen ">
-            <h1 className="flex items-center justify-center text-4xl font-bold p-5 border-b-3 
-            rounded-b-2xl bg-amber-200 ">DayX</h1>
-            <Month />
-
+            <Header />
+            <Month tasks={tasks} />
         </div>
 
     )

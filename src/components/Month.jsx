@@ -3,12 +3,11 @@ import MonthDetails from "./month-details-header/MonthDetails";
 import { weekCount } from "../utils/dateUtils";
 import { useState } from "react";
 
-function Month() {
+function Month({tasks}) {
     const [currentDate, setCurrentDate] = useState(new Date(2025, 10, 14));
     const monthIdx = currentDate.getMonth();
     const year = currentDate.getFullYear();
-    const taskStartDate = new Date(2025, 10, 5);
-    const taskEndDate = new Date(2025, 10, 20);
+
 
     const firstWeekdayIdx = new Date(year, monthIdx).getDay(); //index of starting day in week
     const daysInMonth = new Date(year, monthIdx + 1, 0).getDate();
@@ -56,8 +55,8 @@ function Month() {
                         <Day key={index}
                             date={date}
                             monthIdx={monthIdx}
-                            taskStartDate={taskStartDate}
-                            taskEndDate={taskEndDate}
+                            taskStartDate={tasks[0].startDate}
+                            taskEndDate={tasks[0].endDate}
                         />
                     )
                 })}
