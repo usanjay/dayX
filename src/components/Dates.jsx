@@ -4,27 +4,23 @@ import { weekCount } from "../utils/dateUtils";
 function currentMonthDates() {
 
     const today = new Date(2025, 10, 14);
-    const currentMonthIdx = today.getMonth();
-    const currentYear = today.getFullYear();
+    const monthIdx = today.getMonth();
+    const year = today.getFullYear();
     const taskStartDate = new Date(2025, 10, 5);
     const taskEndDate = new Date(2025, 10, 20);
 
-    const firstWeekdayIdx = new Date(currentYear, currentMonthIdx).getDay(); //index of starting day in week
-    const daysInMonth = new Date(currentYear, currentMonthIdx + 1, 0).getDate();
+    const firstWeekdayIdx = new Date(year, monthIdx).getDay(); //index of starting day in week
+    const daysInMonth = new Date(year, monthIdx + 1, 0).getDate();
 
     const totalWeeks = weekCount(firstWeekdayIdx, daysInMonth);
     let currentMonthDates = new Array(totalWeeks * 7).fill(null);
 
-    for (let i = 0; i < currentMonthDates.length; i++) {
-        // Fill previous month dates in array;
-        // if (i < firstWeekdayIdx) {
-        //     let lastMonthDate = firstWeekdayIdx - 1;
-        // }
+    // if (firstWeekdayIdx > 0) {
+    //     let daysInLastMont = new Date(year, monthIdx, 0).getDate();
+    // }
 
-        // Fill current month dates in array;
-        if (i >= firstWeekdayIdx && i <= daysInMonth + firstWeekdayIdx - 1) {
-            currentMonthDates[i] = new Date(currentYear, currentMonthIdx, i - firstWeekdayIdx + 1);
-        }
+    for (let i = 0; i < currentMonthDates.length; i++) {
+        currentMonthDates[i] = new Date(year, monthIdx, i - firstWeekdayIdx + 1);
     }
 
     const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
@@ -50,6 +46,7 @@ function currentMonthDates() {
                     return (
                         <Day key={index}
                             date={date}
+                            monthIdx={monthIdx}
                             taskStartDate={taskStartDate}
                             taskEndDate={taskEndDate}
                         />
