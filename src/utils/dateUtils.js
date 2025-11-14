@@ -14,3 +14,8 @@ export const isWithinTaskTime = (date, taskStartDate, taskEndDate) => {
 export const weekCount = (monthStartDayIdx, daysInMonth) => {
     return Math.ceil((monthStartDayIdx + daysInMonth) / 7);
 }
+
+
+export const getMonthName = date => {
+    return date.toLocaleString('default', {month: 'long'});
+}

@@ -1,11 +1,12 @@
 import Day from "./Day";
+import MonthDetails from "./month-details-header/MonthDetails";
 import { weekCount } from "../utils/dateUtils";
+import { useState } from "react";
 
-function currentMonthDates() {
-
-    const today = new Date(2025, 10, 14);
-    const monthIdx = today.getMonth();
-    const year = today.getFullYear();
+function Month() {
+    const [currentDate, setCurrentDate] = useState(new Date(2025, 10, 14));
+    const monthIdx = currentDate.getMonth();
+    const year = currentDate.getFullYear();
     const taskStartDate = new Date(2025, 10, 5);
     const taskEndDate = new Date(2025, 10, 20);
 
@@ -14,6 +15,17 @@ function currentMonthDates() {
 
     const totalWeeks = weekCount(firstWeekdayIdx, daysInMonth);
     let currentMonthDates = new Array(totalWeeks * 7).fill(null);
+
+    const changeMonth = (value) => {
+
+        if (value === '<') {
+            currentDate.setMonth(monthIdx - 1);
+            setCurrentDate(new Date(currentDate));
+        } else if (value === '>') {
+            currentDate.setMonth(monthIdx + 1);
+            setCurrentDate(new Date(currentDate));
+        }
+    }
 
     // if (firstWeekdayIdx > 0) {
     //     let daysInLastMont = new Date(year, monthIdx, 0).getDate();
@@ -27,10 +39,7 @@ function currentMonthDates() {
 
     return (
         <>
-            {/* <div>
-                <div>{today.getFullYear()}</div>
-                <div>{today.getMonth() + 1}</div>
-            </div> */}
+            <MonthDetails date={currentDate} changeMonth={changeMonth} />
 
             {/* Week Days Headline */}
             <div className="grid grid-cols-7 gap-0.5 mx-6">
@@ -58,4 +67,4 @@ function currentMonthDates() {
 }
 
 
-export default currentMonthDates
+export default Month;
