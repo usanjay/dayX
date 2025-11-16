@@ -1,6 +1,8 @@
 import Header from "../../components/Header";
 import NewTask from "../NewTask";
 import { Link } from "react-router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 
 function Home() {
     return (
@@ -12,6 +14,7 @@ function Home() {
                     <div className="text-gray-500 mt-2">1 task in total</div>
                 </section>
 
+                {/* Tasks list */}
                 <section>
                     <div className="border-t border-gray-200 flex justify-between p-2 font-medium">
                         <div className="flex-1">Sr.No.</div>
@@ -47,6 +50,13 @@ function Home() {
                     
 
 
+                </section>
+
+                {/* Empty List */}
+                <section className="border-t-2 border-gray-200 py-10 flex flex-col items-center text-gray-500">
+                    <FontAwesomeIcon icon={faCalendar} className="text-4xl mb-3"/>
+                    <p>No tasks yet</p>
+                    <p className="text-sm text-gray-400">Create your first task to get started</p>
                 </section>
             </div>
         </div>
