@@ -4,7 +4,7 @@ import Calander from "../components/Calander";
 import { useNavigate } from "react-router";
 
 
-function Home({createTask}) {
+function NewTask({createTask}) {
 
     const {
         register,
@@ -62,4 +62,4 @@ function Home({createTask}) {
     );
 }
 
-export default Home;
+export default NewTask;
