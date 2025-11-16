@@ -1,7 +1,5 @@
 import Calander from "./components/Calander";
-import NewTask from "./pages/NewTask";
-import Home from "./pages/Home/Home";
-
+import Home from "./pages/Home";
 import { Routes, Route } from 'react-router';
 import { useState } from "react";
 
@@ -33,9 +31,8 @@ function App() {
 
   return (
     <Routes>
-      <Route index element={<Home />} />
-      <Route path="calander" index element={<Calander tasks={tasks} />} />
-      <Route path="newTask" element={<NewTask createTask={createTask} />} />
+      <Route index element={<Home createTask={createTask} />} />
+      <Route path="calander" index element={<Calander tasks={tasks} createTask={createTask} />} />
     </Routes>
   )
 }

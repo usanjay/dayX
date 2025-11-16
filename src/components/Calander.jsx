@@ -2,10 +2,10 @@ import Month from "./Month";
 import Header from "./Header";
 
 
-function Calander({tasks}) {
+function Calander({ tasks, createTask }) {
     return (
         <div className="h-screen ">
-            <Header />
+            <Header createTask={createTask} />
             <Month tasks={tasks} />
         </div>
 
