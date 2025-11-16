@@ -2,9 +2,16 @@ import { Link } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import NewTask from "./NewTask/NewTask";
+import NewTask from "./NewTask";
+import { useState } from "react";
 
 function Header({ createTask }) {
+    const [createTaskVisibility, setCreateTaskVisibility] = useState(false);
+    const toggleVisibility = () => {
+        const isVisible  = createTaskVisibility ? false : true
+        setCreateTaskVisibility(isVisible);
+    }
+
     return (
         <>
             <div className="flex flex-col md:flex-row md:items-center md:justify-between p-5 md:px-10  border-b-3 
@@ -15,13 +22,16 @@ function Header({ createTask }) {
                         icon={faCalendar} />
                     <div className="text-4xl font-bold " >DayX</div>
                 </Link>
-                <div className="bg-black text-white p-2 rounded-xl flex items-center justify-center mt-3 md:mt-0">
+                <div onClick={toggleVisibility}
+                    className="bg-black text-white p-2 rounded-xl flex items-center justify-center mt-3 md:mt-0">
                     <FontAwesomeIcon icon={faPlus} className="mr-1 text-sm" />
                     Create New Task
                 </div>
             </div>
 
-            {/* <NewTask createTask={createTask} /> */}
+            <NewTask createTask={createTask} 
+            createTaskVisibility={createTaskVisibility}
+            toggleVisibility={toggleVisibility}/>
         </>
 
 

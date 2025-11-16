@@ -1,5 +1,4 @@
-import Header from "../components/Header";
-import NewTask from "../components/NewTask/NewTask";
+import Header from "../components/Header/Header";
 import { Link } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons'

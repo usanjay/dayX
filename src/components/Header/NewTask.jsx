@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
-function NewTask({ createTask }) {
+function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
 
     const {
         register,
@@ -14,8 +14,15 @@ function NewTask({ createTask }) {
         navigate('/');
     };
 
+    const handleClick = (e) => {
+        e.preventDefault();
+        toggleVisibility();
+    }
+
+    const display = createTaskVisibility ? 'flex' : 'hidden';
+
     return (
-        <div className="fixed top-0 flex justify-center items-center z-1000 h-screen w-screen bg-gray-950/50">
+        <div className={`${display} fixed top-0 justify-center items-center z-1000 h-screen w-screen bg-gray-950/50`} >
             <div className="flex flex-col items-center p-5 bg-white rounded-2xl mx-5">
 
                 <div className="w-full border-b-2 border-gray-200 pb-4">
@@ -54,14 +61,14 @@ function NewTask({ createTask }) {
 
                     <div className="mt-6 flex justify-around md:justify-end">
                         <button className="py-2 px-4 box-border border rounded-md cursor-pointer mr-4 
-                            hover:bg-gray-100 transtion duration-100 w-full">Cancel</button>
+                            hover:bg-gray-100 transtion duration-100 w-full" onClick={handleClick}>Cancel</button>
                         <button className="px-4 bg-black text-white rounded-md cursor-pointer 
                             hover:bg-gray-900 transtion duration-100 w-full">Create Task</button>
                     </div>
                 </form>
 
             </div>
-        </div>
+        </div >
     );
 }
 
