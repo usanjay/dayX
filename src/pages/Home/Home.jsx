@@ -17,14 +17,22 @@ function Home() {
 
                 {/* Tasks list - Desktop View*/}
                 <section>
-                    <div className="border-t border-gray-200 flex justify-between p-2 font-medium">
+                    <div className="border-t border-gray-200 flex justify-between p-3 font-medium">
                         <div className="flex-1">Sr.No.</div>
                         <div className="flex-5">Task Name</div>
                         <div className="flex-2">Start Date</div>
                         <div className="flex-2">End Date</div>
                         <div className="w-15 text-right">Actions</div>
                     </div>
-                    <div className="border-t text-sm border-gray-200 flex justify-between px-2 py-3 hover:bg-gray-300
+                    <div className="border-t text-sm border-gray-200 flex justify-between p-3 hover:bg-gray-300
+                    cursor-pointer">
+                        <div className="flex-1 my-auto ">1</div>
+                        <div className="flex-5 my-auto">Complete Coding</div>
+                        <div className="flex-2 my-auto">Nov 21, 2025</div>
+                        <div className="flex-2 my-auto">Nov 07, 2025</div>
+                        <div className="w-15 text-center cursor-pointer bg-red-500 text-white p-1 rounded-sm my-auto ">Delete</div>
+                    </div>
+                    <div className="border-t text-sm border-gray-200 flex justify-between p-3 hover:bg-gray-300
                     cursor-pointer">
                         <div className="flex-1 my-auto">1</div>
                         <div className="flex-5 my-auto">Complete Coding</div>
@@ -32,15 +40,7 @@ function Home() {
                         <div className="flex-2 my-auto">Nov 07, 2025</div>
                         <div className="w-15 text-center cursor-pointer bg-red-500 text-white p-1 rounded-sm my-auto ">Delete</div>
                     </div>
-                    <div className="border-t text-sm border-gray-200 flex justify-between px-2 py-3 hover:bg-gray-300
-                    cursor-pointer">
-                        <div className="flex-1 my-auto">1</div>
-                        <div className="flex-5 my-auto">Complete Coding</div>
-                        <div className="flex-2 my-auto">Nov 21, 2025</div>
-                        <div className="flex-2 my-auto">Nov 07, 2025</div>
-                        <div className="w-15 text-center cursor-pointer bg-red-500 text-white p-1 rounded-sm my-auto ">Delete</div>
-                    </div>
-                    <div className="border-t text-sm border-gray-200 flex justify-between px-2 py-3 hover:bg-gray-300
+                    <div className="border-t text-sm border-gray-200 flex justify-between p-3 hover:bg-gray-300
                     cursor-pointer">
                         <div className="flex-1 my-auto">1</div>
                         <div className="flex-5 my-auto">Complete Coding</div>
