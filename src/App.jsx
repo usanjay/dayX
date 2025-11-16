@@ -1,6 +1,6 @@
 import Calander from "./components/Calander";
 import NewTask from "./pages/NewTask";
-import Header from "./components/Header";
+import Home from "./pages/Home/Home";
 
 import { Routes, Route } from 'react-router';
 import { useState } from "react";
@@ -33,8 +33,8 @@ function App() {
 
   return (
     <Routes>
-
-      <Route index element={<Calander tasks={tasks} />} />
+      <Route index element={<Home />} />
+      <Route path="calander" index element={<Calander tasks={tasks} />} />
       <Route path="newTask" element={<NewTask createTask={createTask} />} />
     </Routes>
   )
