@@ -12,12 +12,14 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
     const onSubmit = (data) => {
         createTask(data);
         navigate('/');
+        toggleVisibility();
     };
 
     const handleClick = (e) => {
         e.preventDefault();
         toggleVisibility();
     }
+
 
     const display = createTaskVisibility ? 'flex' : 'hidden';
 
