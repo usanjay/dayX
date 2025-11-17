@@ -1,4 +1,4 @@
-import Calander from "./components/Calander";
+import Calander from './pages/CalanderPage/Calander'
 import Home from "./pages/HomePage/Home";
 import { Routes, Route } from 'react-router';
 import { useState } from "react";

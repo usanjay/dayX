@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { getMonthName } from "../../utils/dateUtils";
+import { getMonthName } from "../../../utils/dateUtils";
 import ChangeMonth from "./changeMonth";
 
 function MonthDetails({ date, changeMonth }) {

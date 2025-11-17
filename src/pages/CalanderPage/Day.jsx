@@ -1,4 +1,4 @@
-import { isSameDay, isPreviousDay, isWithinTaskTime } from "../utils/dateUtils";
+import { isSameDay, isPreviousDay, isWithinTaskTime } from "../../utils/dateUtils";
 
 const isCurrentMonth = (date, monthIdx) => {
     return date.getMonth() === monthIdx;

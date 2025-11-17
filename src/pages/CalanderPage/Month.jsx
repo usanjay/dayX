@@ -1,6 +1,6 @@
 import Day from "./Day";
 import MonthDetails from "./month-details-header/MonthDetails";
-import { weekCount } from "../utils/dateUtils";
+import { weekCount } from "../../utils/dateUtils";
 import { useState } from "react";
 
 function Month({tasks}) {
