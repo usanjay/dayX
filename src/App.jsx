@@ -4,39 +4,42 @@ import { Routes, Route } from 'react-router';
 import { useState } from "react";
 
 function App() {
-  const initialTasks = [
-    {
-      taskName: 'New Task 1',
-      startDate: new Date(2025, 10, 5),
-      endDate: new Date(2025, 10, 20)
-    }, {
-      taskName: 'New Task 2',
-      startDate: new Date(2025, 10, 5),
-      endDate: new Date(2025, 10, 20)
-    }, {
-      taskName: 'New Task 3',
-      startDate: new Date(2025, 10, 5),
-      endDate: new Date(2025, 10, 20)
-    }
+  
+  const loadTasks = () => {
+    const stored = JSON.parse(localStorage.getItem('tasks')) || [];
+    return stored.map(t => ({
+      ...t,
+      startDate: new Date(t.startDate),
+      endDate: new Date(t.endDate)
+    }));
+  }
 
-  ]
-
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, setTasks] = useState(loadTasks);
 
   const toLocaleDate = (dateString) => {
     const [y, m, d] = dateString.split('-').map(Number);
     return new Date(y, m - 1, d);
   }
 
-  const createTask = (data) => {
-    const temp = [{
-      task: data.taskName,
-      startDate: toLocaleDate(data.startDate),
-      endDate: toLocaleDate(data.endDate)
-    }]
-
-    setTasks(temp);
+  const addtoStorage = (tasks) => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   }
+
+  const createTask = (data) => {
+    const newList = [
+      ...tasks,
+      {
+        id: crypto.randomUUID(),
+        taskName: data.taskName,
+        startDate: toLocaleDate(data.startDate),
+        endDate: toLocaleDate(data.endDate)
+      }
+    ]
+    setTasks(newList);
+    addtoStorage(newList);
+  }
+
+
 
   return (
     <Routes>

@@ -1,4 +1,11 @@
-import dateFormat from '../../utils/dateFormat'
+import dateFormat from '../../utils/dateFormat';
+// import { useNavigate } from 'react-router';
+
+// function TaskList({ tasks, createTask }) {
+// const navigate = useNavigate();
+// const handleClick = (task) => {
+//     navigate('/calander', { state: task });
+// };
 
 function TaskList({ tasks }) {
     return (
@@ -16,12 +23,14 @@ function TaskList({ tasks }) {
                     <div key={index} className="border-t text-sm border-gray-200 flex justify-between p-3 hover:bg-gray-300
                         cursor-pointer">
                         <div className="flex-1 my-auto ">{index + 1}</div>
-                        <div className="flex-5 my-auto">{task.taskName}</div>
+                        <div className="flex-5 my-auto" onClick={() => {
+                            // handleClick(task)
+                        }}>{task.taskName}</div>
                         <div className="flex-2 my-auto">{dateFormat(task.startDate)}</div>
                         <div className="flex-2 my-auto">{dateFormat(task.endDate)}</div>
                         <div className="w-15 text-center cursor-pointer bg-red-500 text-white p-1 rounded-sm my-auto ">Delete</div>
                     </div>
-                )
+                );
             })}
 
 

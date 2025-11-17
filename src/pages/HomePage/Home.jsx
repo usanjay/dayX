@@ -18,13 +18,13 @@ function Home({ createTask, tasks }) {
             <div className="bg-white m-5 md:m-10 rounded-lg border border-gray-200 shadow-xl">
                 <section className="p-3 md:p-5">
                     <h2>All Tasks</h2>
-                    <div className="text-gray-500 md:mt-2">{tasks.length} {tasks.length === 1 ? 'task': 'tasks'} in total</div>
+                    <div className="text-gray-500 md:mt-2">{tasks.length} {tasks.length === 1 ? 'task' : 'tasks'} in total</div>
                 </section>
 
                 {/* Tasks list - Desktop View*/}
                 {isMobile
-                    ? (<TaskListMobile tasks={tasks} />)
-                    : (<TaskList tasks={tasks} />)}
+                    ? (<TaskListMobile tasks={tasks} createTask={createTask} />)
+                    : (<TaskList tasks={tasks} createTask={createTask} />)}
 
 
                 {/* Empty List */}

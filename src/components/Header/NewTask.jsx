@@ -2,20 +2,22 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 
 function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
-
+    const navigate = useNavigate();
     const {
         register,
-        handleSubmit
+        handleSubmit,
+        reset
     } = useForm();
 
-    const navigate = useNavigate();
+
     const onSubmit = (data) => {
         createTask(data);
+        reset();
         navigate('/');
         toggleVisibility();
     };
 
-    const handleClick = (e) => {
+    const onClose = (e) => {
         e.preventDefault();
         toggleVisibility();
     }
@@ -63,7 +65,7 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
 
                     <div className="mt-6 flex justify-around md:justify-end">
                         <button className="py-2 px-4 box-border border rounded-md cursor-pointer mr-4 
-                            hover:bg-gray-100 transtion duration-100 w-full" onClick={handleClick}>Cancel</button>
+                            hover:bg-gray-100 transtion duration-100 w-full" onClick={onClose}>Cancel</button>
                         <button className="px-4 bg-black text-white rounded-md cursor-pointer 
                             hover:bg-gray-900 transtion duration-100 w-full">Create Task</button>
                     </div>
