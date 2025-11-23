@@ -50,7 +50,7 @@ function App() {
   return (
     <Routes>
       <Route index element={<Home tasks={tasks} createTask={createTask} deleteTask={deleteTask} />} />
-      <Route path="calander" index element={<Calander tasks={tasks} createTask={createTask} />} />
+      <Route path="calander/:id" index element={<Calander tasks={tasks} createTask={createTask} />} />
     </Routes>
   )
 }

@@ -1,13 +1,17 @@
 import dateFormat from '../../utils/dateFormat';
-// import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
-// function TaskList({ tasks, createTask }) {
-// const navigate = useNavigate();
-// const handleClick = (task) => {
-//     navigate('/calander', { state: task });
-// };
+
 
 function TaskList({ tasks, deleteTask }) {
+
+
+    const navigate = useNavigate();
+    const handleClick = (task) => {
+        navigate(`/calander/${task.id}`);
+    };
+
+
     return (
         <section>
             <div className="border-t border-gray-200 flex justify-between p-3 font-medium">
@@ -24,12 +28,12 @@ function TaskList({ tasks, deleteTask }) {
                         cursor-pointer">
                         <div className="flex-1 my-auto ">{index + 1}</div>
                         <div className="flex-5 my-auto" onClick={() => {
-                            // handleClick(task)
+                            handleClick(task)
                         }}>{task.taskName}</div>
                         <div className="flex-2 my-auto">{dateFormat(task.startDate)}</div>
                         <div className="flex-2 my-auto">{dateFormat(task.endDate)}</div>
                         <div className="w-15 text-center cursor-pointer bg-red-500 text-white p-1 rounded-sm my-auto"
-                            onClick={()=>{
+                            onClick={() => {
                                 deleteTask(task.id);
                             }}>Delete</div>
                     </div>
@@ -41,4 +45,4 @@ function TaskList({ tasks, deleteTask }) {
     )
 }
 
-export default TaskList
+export default TaskList;
