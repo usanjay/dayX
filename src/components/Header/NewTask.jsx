@@ -7,6 +7,7 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
         register,
         handleSubmit,
         reset,
+        watch,
         formState: { errors }
     } = useForm({
         defaultValues: {
@@ -14,13 +15,15 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
             startDate: "",
             endDate: "",
         }
-    })
+    });
+    const startDate = watch("startDate");
+    const firstError = Object.values(errors)[0];
 
     const onSubmit = (data) => {
         createTask(data);
         navigate('/');
         toggleVisibility();
-        
+
     };
 
 
@@ -47,11 +50,11 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
                         <input
                             {...register('taskName', {
                                 required: true,
-                                minLength: {value: 3, message: "Task name must be at least 3 characters"},
-                                maxLength: {value: 35, message: "Task name must be at most 35 characters"}
+                                minLength: { value: 3, message: "Task name must be at least 3 characters" },
+                                maxLength: { value: 35, message: "Task name must be at most 35 characters" }
                             })}
                             className={`md:w-100 bg-gray-100 outline-0 p-2 rounded-md
-                                ${errors.taskName ? 'border-1 border-red-800' : ''}`}
+                                ${errors.taskName ? 'border border-red-800' : ''}`}
                             id="task-name"
                             type="text"
                             placeholder="Enter task name" />
@@ -66,14 +69,20 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
 
                         <label htmlFor="end-date" className="px-2 mt-4">Deadline Date</label>
                         <input
-                            {...register('endDate')}
-                            className="bg-gray-100 outline-0 p-2 rounded-md"
+                            {...register('endDate', {
+                                validate: value =>
+                                    !startDate || new Date(value) >= new Date(startDate)
+                                    || "End date cannot be before start date"
+                            })}
+
+                            className={`bg-gray-100 outline-0 p-2 rounded-md
+                                ${errors.endDate ? 'border border-red-800' : ''} `}
                             id="end-date"
                             type="date"
                             required />
                     </div>
 
-                    <div>{errors.taskName && <p className="text-red-800 text-sm px-2 mt-5">{errors.taskName.message}</p>}</div>
+                    <div>{firstError && <p className="text-red-800 text-sm px-2 mt-5">{firstError.message}</p>}</div>
 
                     <div className="mt-6 flex justify-around md:justify-end">
                         <button type="button" className="py-2 px-4 box-border border rounded-md cursor-pointer mr-4 
