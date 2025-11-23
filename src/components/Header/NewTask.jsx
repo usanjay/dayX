@@ -7,6 +7,7 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
         register,
         handleSubmit,
         reset,
+        formState: { errors }
     } = useForm({
         defaultValues: {
             taskName: "",
@@ -19,6 +20,7 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
         createTask(data);
         navigate('/');
         toggleVisibility();
+        
     };
 
 
@@ -39,13 +41,17 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
                     <div className="text-sm">Add a new task to your calendar with start and end dates.</div>
                 </div>
 
-
                 <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col mt-4">
                         <label htmlFor="task-name" className="px-2 md:mr-5">Task Name</label>
                         <input
-                            {...register('taskName', { required: true, minLength: 5, maxLength: 35 })}
-                            className="md:w-100 bg-gray-100 outline-0 p-2 rounded-md"
+                            {...register('taskName', {
+                                required: true,
+                                minLength: {value: 3, message: "Task name must be at least 3 characters"},
+                                maxLength: {value: 35, message: "Task name must be at most 35 characters"}
+                            })}
+                            className={`md:w-100 bg-gray-100 outline-0 p-2 rounded-md
+                                ${errors.taskName ? 'border-1 border-red-800' : ''}`}
                             id="task-name"
                             type="text"
                             placeholder="Enter task name" />
@@ -66,6 +72,8 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
                             type="date"
                             required />
                     </div>
+
+                    <div>{errors.taskName && <p className="text-red-800 text-sm px-2 mt-5">{errors.taskName.message}</p>}</div>
 
                     <div className="mt-6 flex justify-around md:justify-end">
                         <button type="button" className="py-2 px-4 box-border border rounded-md cursor-pointer mr-4 
