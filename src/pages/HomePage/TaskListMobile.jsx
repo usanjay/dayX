@@ -27,7 +27,7 @@ function TaskListMobile({ tasks, deleteTask, openTask }) {
                         <div className="grid grid-cols-2 mt-3 gap-2 text-gray-600 text-sm">
                             <div>Start Date:</div>
                             <div className="text-right">{dateFormat(task.startDate)}</div>
-                            <div>Start Date:</div>
+                            <div>End Date:</div>
                             <div className="text-right">{dateFormat(task.endDate)}</div>
                         </div>
                     </div>

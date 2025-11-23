@@ -17,7 +17,6 @@ function App() {
   const [tasks, setTasks] = useState(loadTasks);
 
   const toLocaleDate = (dateString) => {
-    console.log(dateString)
     const [y, m, d] = dateString.split('-').map(Number);
     return new Date(y, m - 1, d);
   }
