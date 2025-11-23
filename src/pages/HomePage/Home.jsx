@@ -8,7 +8,7 @@ import TaskListMobile from "./TaskListMobile";
 
 import { useMediaQuery } from "react-responsive";
 
-function Home({ createTask, tasks }) {
+function Home({ createTask, tasks, deleteTask }) {
     const isMobile = useMediaQuery({ maxWidth: 768 })
 
     return (
@@ -23,8 +23,8 @@ function Home({ createTask, tasks }) {
 
                 {/* Tasks list - Desktop View*/}
                 {isMobile
-                    ? (<TaskListMobile tasks={tasks} createTask={createTask} />)
-                    : (<TaskList tasks={tasks} createTask={createTask} />)}
+                    ? (<TaskListMobile tasks={tasks} createTask={createTask} deleteTask={deleteTask} />)
+                    : (<TaskList tasks={tasks} createTask={createTask} deleteTask={deleteTask} />)}
 
 
                 {/* Empty List */}

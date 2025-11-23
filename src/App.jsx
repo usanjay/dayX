@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router';
 import { useState } from "react";
 
 function App() {
-  
+
   const loadTasks = () => {
     const stored = JSON.parse(localStorage.getItem('tasks')) || [];
     return stored.map(t => ({
@@ -17,6 +17,7 @@ function App() {
   const [tasks, setTasks] = useState(loadTasks);
 
   const toLocaleDate = (dateString) => {
+    console.log(dateString)
     const [y, m, d] = dateString.split('-').map(Number);
     return new Date(y, m - 1, d);
   }
@@ -39,11 +40,16 @@ function App() {
     addtoStorage(newList);
   }
 
+  const deleteTask = (id) => {
+    const newList = tasks.filter(task => task.id != id);
+    setTasks(newList);
+    addtoStorage(newList);
+  }
 
 
   return (
     <Routes>
-      <Route index element={<Home tasks={tasks} createTask={createTask} />} />
+      <Route index element={<Home tasks={tasks} createTask={createTask} deleteTask={deleteTask} />} />
       <Route path="calander" index element={<Calander tasks={tasks} createTask={createTask} />} />
     </Routes>
   )

@@ -7,7 +7,7 @@ import dateFormat from '../../utils/dateFormat';
 //     navigate('/calander', { state: task });
 // };
 
-function TaskList({ tasks }) {
+function TaskList({ tasks, deleteTask }) {
     return (
         <section>
             <div className="border-t border-gray-200 flex justify-between p-3 font-medium">
@@ -28,7 +28,10 @@ function TaskList({ tasks }) {
                         }}>{task.taskName}</div>
                         <div className="flex-2 my-auto">{dateFormat(task.startDate)}</div>
                         <div className="flex-2 my-auto">{dateFormat(task.endDate)}</div>
-                        <div className="w-15 text-center cursor-pointer bg-red-500 text-white p-1 rounded-sm my-auto ">Delete</div>
+                        <div className="w-15 text-center cursor-pointer bg-red-500 text-white p-1 rounded-sm my-auto"
+                            onClick={()=>{
+                                deleteTask(task.id);
+                            }}>Delete</div>
                     </div>
                 );
             })}

@@ -7,10 +7,7 @@ import { useState } from "react";
 
 function Header({ createTask }) {
     const [createTaskVisibility, setCreateTaskVisibility] = useState(false);
-    const toggleVisibility = () => {
-        const isVisible  = createTaskVisibility ? false : true
-        setCreateTaskVisibility(isVisible);
-    }
+    const toggleVisibility = () => setCreateTaskVisibility(v => !v);
 
     return (
         <>
@@ -29,9 +26,13 @@ function Header({ createTask }) {
                 </div>
             </div>
 
-            <NewTask createTask={createTask} 
-            createTaskVisibility={createTaskVisibility}
-            toggleVisibility={toggleVisibility}/>
+            {createTaskVisibility && (
+                <NewTask
+                    createTask={createTask}
+                    createTaskVisibility={createTaskVisibility}
+                    toggleVisibility={toggleVisibility}
+                />
+            )}
         </>
 
 

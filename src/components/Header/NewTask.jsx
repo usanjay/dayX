@@ -6,27 +6,33 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
     const {
         register,
         handleSubmit,
-        reset
-    } = useForm();
-
+        reset,
+    } = useForm({
+        defaultValues: {
+            taskName: "",
+            startDate: "",
+            endDate: "",
+        }
+    })
 
     const onSubmit = (data) => {
         createTask(data);
-        reset();
+        console.log(data)
         navigate('/');
         toggleVisibility();
     };
 
+
     const onClose = (e) => {
+        reset();
         e.preventDefault();
         toggleVisibility();
     }
 
-
-    const display = createTaskVisibility ? 'flex' : 'hidden';
+    if (!createTaskVisibility) return null;
 
     return (
-        <div className={`${display} fixed top-0 justify-center items-center z-1000 h-screen w-screen bg-gray-950/50`} >
+        <div className={`flex fixed top-0 justify-center items-center z-1000 h-screen w-screen bg-gray-950/50`} >
             <div className="flex flex-col items-center p-5 bg-white rounded-2xl mx-5">
 
                 <div className="w-full border-b-2 border-gray-200 pb-4">
@@ -39,12 +45,11 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
                     <div className="flex flex-col mt-4">
                         <label htmlFor="task-name" className="px-2 md:mr-5">Task Name</label>
                         <input
-                            {...register('taskName')}
+                            {...register('taskName', { required: true, minLength: 5, maxLength: 35 })}
                             className="md:w-100 bg-gray-100 outline-0 p-2 rounded-md"
                             id="task-name"
                             type="text"
-                            placeholder="Enter task name"
-                            required />
+                            placeholder="Enter task name" />
 
                         <label htmlFor="start-date" className=" px-2 mt-4">Start Date</label>
                         <input
@@ -64,9 +69,9 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
                     </div>
 
                     <div className="mt-6 flex justify-around md:justify-end">
-                        <button className="py-2 px-4 box-border border rounded-md cursor-pointer mr-4 
+                        <button type="button" className="py-2 px-4 box-border border rounded-md cursor-pointer mr-4 
                             hover:bg-gray-100 transtion duration-100 w-full" onClick={onClose}>Cancel</button>
-                        <button className="px-4 bg-black text-white rounded-md cursor-pointer 
+                        <button type="submit" className="px-4 bg-black text-white rounded-md cursor-pointer 
                             hover:bg-gray-900 transtion duration-100 w-full">Create Task</button>
                     </div>
                 </form>
