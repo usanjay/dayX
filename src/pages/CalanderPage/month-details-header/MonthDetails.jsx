@@ -4,13 +4,13 @@ import ChangeMonth from "./changeMonth";
 
 function MonthDetails({ date, changeMonth }) {
     return (
-        <div className="flex-1 flex justify-center px-20">
-            <ChangeMonth content="<" changeMonth={changeMonth} />
-            <div className="flex items-center text-xl font-bold px-4">
+        <div className="flex-1 flex justify-between my-6 font-semibold">
+            <ChangeMonth content="Previous" icon="<" changeMonth={changeMonth} />
+            <div className="flex items-center md:text-xl  px-4">
                 <div className="mr-2">{getMonthName(date)}</div>
                 <div>{date.getFullYear()}</div>
             </div>
-            <ChangeMonth content=">" changeMonth={changeMonth} />
+            <ChangeMonth content="Next" icon=">" changeMonth={changeMonth} />
         </div>
     )
 }
