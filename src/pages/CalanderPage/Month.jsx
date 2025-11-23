@@ -1,5 +1,6 @@
 import Day from "./Day";
 import MonthDetails from "./month-details-header/MonthDetails";
+import TaskDetails from "./TaskDetails";
 import { weekCount } from "../../utils/dateUtils";
 import { useState } from "react";
 
@@ -37,11 +38,12 @@ function Month({task}) {
     const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
     return (
-        <>
-            <MonthDetails date={currentDate} changeMonth={changeMonth} />
+        <div className="bg-white m-5 p-6 md:m-10 rounded-lg border border-gray-200 shadow-xl">
+            <TaskDetails task={task} />
+            <MonthDetails task={task} date={currentDate} changeMonth={changeMonth} />
 
             {/* Week Days Headline */}
-            <div className="grid grid-cols-7 gap-0.5 mx-6">
+            <div className="grid grid-cols-7 gap-0.5">
                 {weekDays.map((day, index) => (
                     <div key={index} className="px-5 py-2 flex justify-center items-center
                         text-xl">{day}</div>)
@@ -49,7 +51,7 @@ function Month({task}) {
             </div>
 
             {/* Dates of month */}
-            <div className="grid grid-cols-7 gap-0.5 mx-6">
+            <div className="grid grid-cols-7 gap-0.5">
                 {currentMonthDates.map((date, index) => {
                     return (
                         <Day key={index}
@@ -61,7 +63,7 @@ function Month({task}) {
                     )
                 })}
             </div>
-        </>
+        </div>
     )
 }
 
