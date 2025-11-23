@@ -4,6 +4,18 @@ export const isSameDay = (date, today) => {
         date.getDate() === today.getDate();
 }
 
+export const isStartDate = (date, startDate) => {
+    return date.getFullYear() === startDate.getFullYear() &&
+        date.getMonth() === startDate.getMonth() &&
+        date.getDate() === startDate.getDate();
+}
+
+export const isEndDate = (date, endDate) => {
+    return date.getFullYear() === endDate.getFullYear() &&
+        date.getMonth() === endDate.getMonth() &&
+        date.getDate() === endDate.getDate();
+}
+
 export const isPreviousDay = (date, today) => date.getTime() < today.getTime();
 
 export const isWithinTaskTime = (date, taskStartDate, taskEndDate) => {

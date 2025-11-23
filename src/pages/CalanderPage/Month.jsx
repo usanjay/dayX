@@ -1,52 +1,26 @@
+import React from 'react';
 import Day from "./Day";
-import MonthDetails from "./month-details-header/MonthDetails";
-import TaskDetails from "./TaskDetails";
-import { weekCount } from "../../utils/dateUtils";
-import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
-function Month({task}) {
-    const [currentDate, setCurrentDate] = useState(new Date(2025, 10, 14));
-    const monthIdx = currentDate.getMonth();
-    const year = currentDate.getFullYear();
-
-
-    const firstWeekdayIdx = new Date(year, monthIdx).getDay(); //index of starting day in week
-    const daysInMonth = new Date(year, monthIdx + 1, 0).getDate();
-
-    const totalWeeks = weekCount(firstWeekdayIdx, daysInMonth);
-    let currentMonthDates = new Array(totalWeeks * 7).fill(null);
-
-    const changeMonth = (value) => {
-
-        if (value === '<') {
-            currentDate.setMonth(monthIdx - 1);
-            setCurrentDate(new Date(currentDate));
-        } else if (value === '>') {
-            currentDate.setMonth(monthIdx + 1);
-            setCurrentDate(new Date(currentDate));
-        }
-    }
-
-    // if (firstWeekdayIdx > 0) {
-    //     let daysInLastMont = new Date(year, monthIdx, 0).getDate();
-    // }
-
-    for (let i = 0; i < currentMonthDates.length; i++) {
-        currentMonthDates[i] = new Date(year, monthIdx, i - firstWeekdayIdx + 1);
-    }
-
-    const weekDays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+function Month({ monthIdx, task, currentMonthDates }) {
+    const weekDays = [{ short: 'S', mid: 'Sun', full: 'Sunday' },
+    { short: 'M', mid: 'Mon', full: 'Monday' },
+    { short: 'T', mid: 'Tue', full: 'Tuesday' },
+    { short: 'W', mid: 'Wed', full: 'Wednesday' },
+    { short: 'T', mid: 'Thu', full: 'Thursday' },
+    { short: 'F', mid: 'Fri', full: 'Friday' },
+    { short: 'S', mid: 'Sat', full: 'Saturday' }
+    ];
+    const isMobile = useMediaQuery({ maxWidth: 768 })
 
     return (
-        <div className="bg-white m-5 p-6 md:m-10 rounded-lg border border-gray-200 shadow-xl">
-            <TaskDetails task={task} />
-            <MonthDetails task={task} date={currentDate} changeMonth={changeMonth} />
-
+        <div className='border border-gray-300 rounded-lg md:max-w-2/3 lg:max-w-1/2 mx-auto'>
             {/* Week Days Headline */}
             <div className="grid grid-cols-7 gap-0.5">
                 {weekDays.map((day, index) => (
-                    <div key={index} className="px-5 py-2 flex justify-center items-center
-                        text-xl">{day}</div>)
+                    <div key={index} className="px-5 py-2 flex justify-center items-center aspect-2/1">
+                        {isMobile ? day.short : day.mid}
+                    </div>)
                 )}
             </div>
 
@@ -57,8 +31,7 @@ function Month({task}) {
                         <Day key={index}
                             date={date}
                             monthIdx={monthIdx}
-                            taskStartDate={task.startDate}
-                            taskEndDate={task.endDate}
+                            task={task}
                         />
                     )
                 })}
@@ -67,5 +40,4 @@ function Month({task}) {
     )
 }
 
-
-export default Month;
+export default Month

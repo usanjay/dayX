@@ -1,4 +1,4 @@
-import Month from "./Month";
+import CalanderMonthly from "./CalanderMonthly";
 import Header from "../../components/Header/Header"
 import { useParams } from "react-router-dom";
 
@@ -9,9 +9,8 @@ function Calander({ tasks, createTask }) {
     return (
         <div className="h-screen ">
             <Header createTask={createTask} />
-            <Month task={task} />
+            <CalanderMonthly task={task} />
         </div>
-
     )
 }
 
