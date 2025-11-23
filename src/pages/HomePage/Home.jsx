@@ -1,15 +1,17 @@
 import Header from "../../components/Header/Header";
-import { Link } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons'
-
+import { useNavigate } from 'react-router';
 import TaskList from "./TaskList";
 import TaskListMobile from "./TaskListMobile";
-
 import { useMediaQuery } from "react-responsive";
 
 function Home({ createTask, tasks, deleteTask }) {
-    const isMobile = useMediaQuery({ maxWidth: 768 })
+    const isMobile = useMediaQuery({ maxWidth: 768 });
+    const navigate = useNavigate();
+    const openTask = (taskId) => {
+        navigate(`/calander/${taskId}`);
+    };
 
     return (
         <div className="bg-gray-100">
@@ -21,9 +23,8 @@ function Home({ createTask, tasks, deleteTask }) {
                     <div className="text-gray-500 md:mt-2">{tasks.length} {tasks.length === 1 ? 'task' : 'tasks'} in total</div>
                 </section>
 
-                {/* Empty List */}
                 {tasks.length === 0
-                    ? 
+                    ?
                     // Empty Task List
                     (<section className="border-t-2 border-gray-200 py-10 flex flex-col items-center text-gray-500">
                         <FontAwesomeIcon icon={faCalendar} className="text-4xl mb-3" />
@@ -33,8 +34,8 @@ function Home({ createTask, tasks, deleteTask }) {
                     :
                     // Task List
                     isMobile
-                        ? (<TaskListMobile tasks={tasks} createTask={createTask} deleteTask={deleteTask} />)
-                        : (<TaskList tasks={tasks} createTask={createTask} deleteTask={deleteTask} />)
+                        ? (<TaskListMobile tasks={tasks} createTask={createTask} deleteTask={deleteTask} openTask={openTask} />)
+                        : (<TaskList tasks={tasks} createTask={createTask} deleteTask={deleteTask} openTask={openTask} />)
                 }
             </div>
         </div>
