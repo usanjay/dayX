@@ -21,18 +21,21 @@ function Home({ createTask, tasks, deleteTask }) {
                     <div className="text-gray-500 md:mt-2">{tasks.length} {tasks.length === 1 ? 'task' : 'tasks'} in total</div>
                 </section>
 
-                {/* Tasks list - Desktop View*/}
-                {isMobile
-                    ? (<TaskListMobile tasks={tasks} createTask={createTask} deleteTask={deleteTask} />)
-                    : (<TaskList tasks={tasks} createTask={createTask} deleteTask={deleteTask} />)}
-
-
                 {/* Empty List */}
-                <section className="border-t-2 border-gray-200 py-10 flex flex-col items-center text-gray-500">
-                    <FontAwesomeIcon icon={faCalendar} className="text-4xl mb-3" />
-                    <p>No tasks yet</p>
-                    <p className="text-sm text-gray-400">Create your first task to get started</p>
-                </section>
+                {tasks.length === 0
+                    ? 
+                    // Empty Task List
+                    (<section className="border-t-2 border-gray-200 py-10 flex flex-col items-center text-gray-500">
+                        <FontAwesomeIcon icon={faCalendar} className="text-4xl mb-3" />
+                        <p>No tasks yet</p>
+                        <p className="text-sm text-gray-400">Create your first task to get started</p>
+                    </section>)
+                    :
+                    // Task List
+                    isMobile
+                        ? (<TaskListMobile tasks={tasks} createTask={createTask} deleteTask={deleteTask} />)
+                        : (<TaskList tasks={tasks} createTask={createTask} deleteTask={deleteTask} />)
+                }
             </div>
         </div>
     )
