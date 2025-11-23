@@ -37,7 +37,7 @@ function Header({ createTask }) {
                         {!isMobile && (<span className="ml-2">Back</span>)}
                     </button>)
                     : (<button onClick={toggleVisibility}
-                        className="bg-black text-white p-2 rounded-xl flex items-center justify-center mt-3 md:mt-0">
+                        className="bg-black text-white p-2 rounded-xl flex items-center justify-center">
                         <FontAwesomeIcon icon={faPlus} className="mr-1 text-sm" />
                         Create New Task
                     </button>)
