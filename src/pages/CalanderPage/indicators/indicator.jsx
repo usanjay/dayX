@@ -1,6 +1,6 @@
 import React from 'react'
 
-function indicator({ color, content }) {
+function Indicator({ color, content }) {
     const ColorMap = {
         green: 'bg-green-200 border-green-600',
         blue: 'bg-blue-200 border-blue-600',
@@ -18,4 +18,4 @@ function indicator({ color, content }) {
     )
 }
 
-export default indicator
+export default Indicator
