@@ -17,7 +17,6 @@ function NewTask({ createTask, createTaskVisibility, toggleVisibility }) {
 
     const onSubmit = (data) => {
         createTask(data);
-        console.log(data)
         navigate('/');
         toggleVisibility();
     };
