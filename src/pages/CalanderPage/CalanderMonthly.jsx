@@ -6,7 +6,7 @@ import { weekCount } from "../../utils/dateUtils";
 import { useState } from "react";
 
 function CalanderMonthly({task}) {
-    const [currentDate, setCurrentDate] = useState(new Date(2025, 10, 14));
+    const [currentDate, setCurrentDate] = useState(new Date());
     const monthIdx = currentDate.getMonth();
     const year = currentDate.getFullYear();
 
